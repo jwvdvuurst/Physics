@@ -6,29 +6,29 @@ class ball {
 
   private static final float epsilon = 10;
 
-  ball() {
-    float xb = random(width);
-    float yb = random(height);
+  //ball() {
+  //  float xb = random(width);
+  //  float yb = random(height);
 
-    location = new PVector( xb, yb );
+  //  location = new PVector( xb, yb );
 
-    float xd = (random(20) - 10.0) / 5.0;
-    float yd = (random(20) - 10.0) / 5.0;
+  //  float xd = (random(20) - 10.0) / 5.0;
+  //  float yd = (random(20) - 10.0) / 5.0;
 
-    direction = new PVector( xd, yd );
-  }
+  //  direction = new PVector( xd, yd );
+  //}
   
   ball( float mix, float miy, float max, float may ) {
     float w = max - mix;
     float h = may - miy;
     
-    float xb = random(w) + mix;
-    float yb = random(h) + miy;
+    float xb = random(w-10) + (mix + 5);
+    float yb = random(h-10) + (miy + 5);
     
     location = new PVector( xb, yb );
 
-    float xd = random(w/200);
-    float yd = random(h/200);
+    float xd = (random(w/100) - random(w/50))/2;
+    float yd = (random(h/100) - random(w/50))/2;
 
     direction = new PVector( xd, yd );
   }
@@ -44,6 +44,10 @@ class ball {
     if ((location.y <= 0) || (location.y >= height)) {
       direction.y = -direction.y;
     }
+  }
+  
+  PVector getLocation() {
+    return location;
   }
 
   PVector getDirection() {

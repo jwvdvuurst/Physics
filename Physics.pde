@@ -2,8 +2,12 @@
 ArrayList<wall> walls;
 ArrayList<ball> balls;
 
+Tube tube;
+Container lc;
+Container rc;
+
 int numberWalls = 0;
-int numberBalls = 2500;
+int numberBalls = 500;
 
 void setup() {
   fullScreen();
@@ -21,9 +25,9 @@ void setup() {
   PVector rc_luc = new PVector( width - (tw - 10), 10 );
   PVector rc_rbc = new PVector( width - 10, height - 10 );
   
-  Tube tube = new Tube( th );
-  Container lc = new Container( lc_luc, lc_rbc, 0, tube );
-  Container rc = new Container( rc_luc, rc_rbc, 1, tube );
+  tube = new Tube( th );
+  lc = new Container( lc_luc, lc_rbc, 0, tube );
+  rc = new Container( rc_luc, rc_rbc, 1, tube );
   
   tube.construct();
 
@@ -42,6 +46,10 @@ void setup() {
 }
 
 void draw() {
+  
+  int binlc = 0;
+  int binrc = 0;
+  
   clear();
   for ( wall wd : walls ) {
     wd.draw();
@@ -56,7 +64,14 @@ void draw() {
   
   fill(128);
   textSize(64);
-  text( active, width / 2, height / 2 );
+  text( active, width / 2, (height / 2) - 100 );
+  
+  binlc = lc.countBalls( balls );
+  binrc = rc.countBalls( balls );
+  
+  textSize(32);
+  text( binlc, (width / 3) + 20, 50 );
+  text( binrc, 2*(width / 3 ) - 120, 50 );
 
   for ( ball b : balls ) {
     b.resetFlag();
