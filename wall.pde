@@ -24,6 +24,12 @@ class wall {
 
     c = color( r, g, b );
   }
+  
+  wall( PVector start, PVector end ) {
+    this.start = start;
+    this.end = end;
+    c = color(255);
+  }
 
   PVector getStart() {
     return start;

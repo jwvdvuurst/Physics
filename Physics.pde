@@ -13,17 +13,32 @@ void setup() {
   walls = new ArrayList<wall>();
   balls = new ArrayList<ball>();
 
-  for ( int i = 0; i<numberWalls; i++ ) {
-    wall w = new wall();
+  float tw = width / 3;
+  float th = height / 10;
+  
+  PVector lc_luc = new PVector( 10, 10 );
+  PVector lc_rbc = new PVector( tw - 10, height - 10 );
+  PVector rc_luc = new PVector( width - (tw - 10), 10 );
+  PVector rc_rbc = new PVector( width - 10, height - 10 );
+  
+  Tube tube = new Tube( th );
+  Container lc = new Container( lc_luc, lc_rbc, 0, tube );
+  Container rc = new Container( rc_luc, rc_rbc, 1, tube );
+  
+  tube.construct();
 
-    walls.add(w);
+  for( wall w : lc.getWalls() ) {
+    this.walls.add(w);
+  }
+  
+  for( wall w : rc.getWalls() ) {
+    this.walls.add(w);
   }
 
-  for ( int i = 0; i<numberBalls; i++ ) {
-    ball b = new ball();
-
+  for( int i = 0; i<numberBalls; i++ ) {
+    ball b = new ball( lc_luc.x, lc_luc.y, lc_rbc.x, lc_rbc.y );
     balls.add(b);
-  }
+  } 
 }
 
 void draw() {
@@ -51,7 +66,6 @@ void draw() {
 
     for ( wall wd : walls ) {
       b.bounce(wd);
-      wd.move();
     }
     
     for( ball other : balls ) {

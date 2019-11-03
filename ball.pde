@@ -2,7 +2,7 @@ class ball {
   private PVector location;
   private PVector direction;
   private boolean bounced;
-  private int numberBounces = 10;
+  private int numberBounces = 100;
 
   private static final float epsilon = 10;
 
@@ -17,7 +17,22 @@ class ball {
 
     direction = new PVector( xd, yd );
   }
+  
+  ball( float mix, float miy, float max, float may ) {
+    float w = max - mix;
+    float h = may - miy;
+    
+    float xb = random(w) + mix;
+    float yb = random(h) + miy;
+    
+    location = new PVector( xb, yb );
 
+    float xd = random(w/200);
+    float yd = random(h/200);
+
+    direction = new PVector( xd, yd );
+  }
+    
   void move() {
     location.x += direction.x;
     location.y += direction.y;
@@ -103,7 +118,7 @@ class ball {
 
       b.setDirection(db);
 
-      numberBounces--;
+//      numberBounces--;
     }
   }
 
