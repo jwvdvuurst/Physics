@@ -7,7 +7,7 @@ Container lc;
 Container rc;
 
 int numberWalls = 0;
-int numberBalls = 500;
+int numberBalls = 1500;
 
 void setup() {
   fullScreen();
@@ -49,6 +49,7 @@ void draw() {
   
   int binlc = 0;
   int binrc = 0;
+  int bintb = 0;
   
   clear();
   for ( wall wd : walls ) {
@@ -64,14 +65,16 @@ void draw() {
   
   fill(128);
   textSize(64);
-  text( active, width / 2, (height / 2) - 100 );
+  text( active, width / 2, (height / 2) - 200 );
   
   binlc = lc.countBalls( balls );
   binrc = rc.countBalls( balls );
+  bintb = tube.countBalls( balls );
   
   textSize(32);
   text( binlc, (width / 3) + 20, 50 );
   text( binrc, 2*(width / 3 ) - 120, 50 );
+  text( bintb, (width / 2), (height / 2) - (tube.getHeight() / 2 ) - 20 );
 
   for ( ball b : balls ) {
     b.resetFlag();

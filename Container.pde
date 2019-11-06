@@ -39,7 +39,7 @@ class Container {
       dl.y = dr.y;
 
       containerheight = dl.y - tl.y;
-      containerheight -= tube.getheight();
+      containerheight -= tube.getHeight();
       containerheight /= 2;
 
       cu.x = tr.x;
@@ -73,7 +73,7 @@ class Container {
       dl.y = dr.y;
 
       containerheight = dr.y - tr.y;
-      containerheight -= tube.getheight();
+      containerheight -= tube.getHeight();
       containerheight /= 2;
 
       cu.x = tl.x;

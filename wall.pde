@@ -3,7 +3,7 @@ class wall {
   private PVector end;
   private color c;
 
-  private static final float epsilon = 2;
+  private static final float epsilon = 1;
 
   wall() {
     float xs = random(width);

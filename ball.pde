@@ -22,8 +22,8 @@ class ball {
     float w = max - mix;
     float h = may - miy;
     
-    float xb = random(w-10) + (mix + 5);
-    float yb = random(h-10) + (miy + 5);
+    float xb = random(w-40) + (mix + 20);
+    float yb = random(h-40) + (miy + 20);
     
     location = new PVector( xb, yb );
 

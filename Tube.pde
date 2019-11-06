@@ -2,6 +2,7 @@ class Tube {
   private ArrayList<wall> wall;
   private float height = 0;
   private float top = 0;
+  private float bottom = 0;
   private float left = 0;
   private float right = 0;
   
@@ -11,8 +12,23 @@ class Tube {
     walls = new ArrayList<wall>();
   }
   
-  float getheight() {
+  float getHeight() {
     return height;
+  }
+  
+  void setHeight( float height ) {
+    this.height = height;
+  }
+  
+  float getBottom() {
+    if ( bottom == 0 ) {
+      bottom = top + height;
+    }
+    return bottom;
+  }
+  
+  void setBottom() {
+    bottom = top + height;
   }
   
   void setTop( float top ) {
@@ -38,14 +54,16 @@ class Tube {
     fl = new PVector();    
     fr = new PVector();
     
+    setBottom();
+    
     cl.x = left;
     cl.y = top;
     cr.x = right;
     cr.y = top;
     fl.x = left;
-    fl.y = top + height;
+    fl.y = bottom;
     fr.x = right;
-    fr.y = top + height;
+    fr.y = bottom;
     
     wall ceiling, floor;
     
@@ -53,6 +71,23 @@ class Tube {
     floor = new wall( fl, fr );
     walls.add( ceiling );
     walls.add( floor );
+  }
+  
+  int countBalls( ArrayList<ball> balls ) {
+    int numballs = 0;
+
+    for ( ball b : balls ) {
+      PVector bloc = b.getLocation();
+      float x = bloc.x;
+      float y = bloc.y;
+
+      if ( ( ( x >= left) && ( x <= right) ) &&
+           ( ( y >= top) && ( y <= bottom) ) ) {
+        numballs++;
+      }
+    }
+
+    return numballs;
   }
     
   ArrayList<wall> getWalls() {
